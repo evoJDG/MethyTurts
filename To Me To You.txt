@@ -1,0 +1,1 @@
+To Me To You1. This doc is for practising working together on a filed saved in the Git repository (MethyTurts).2. Pull the doc to your local repository and add a numbered sentence. That way we can check we have added stuff in the right order.
