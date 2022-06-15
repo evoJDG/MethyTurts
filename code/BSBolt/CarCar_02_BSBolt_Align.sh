@@ -25,7 +25,7 @@ SAMPLE=$(sed -n "${SGE_TASK_ID}p" $Sample_File)
 
 ## set directories
 DIR=/data/scratch/btx355/Chris_Grant_WGBS/Raw_Data/$SAMPLE # Note this has to be changed depending on user
-DB=/data/SBCS-EizaguirreLab/Turtle_WGBS/Chris_Grant_WGBS/01_BSBolt_Index/CarCar_v1_2021_12_bsbolt_DB
+DB=/data/SBCS-EizaguirreLab/Turtle_WGBS/02_BSBolt_Index/CarCar_v1_2021_12_bsbolt_DB/
 
 ### Run BSBolt Align for paired end WGBS reads ###
 
