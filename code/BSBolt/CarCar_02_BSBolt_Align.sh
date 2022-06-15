@@ -20,7 +20,7 @@ module load python # Python v.3.8.5
 source /data/SBCS-EizaguirreLab/James/environments/my_bsbolt/bin/activate # BSBolt v.1.5.0
 
 ### extract sample ID
-Sample_File=/data/SBCS-EizaguirreLab/Turtle_WGBS/Chris_Grant_WGBS/00_General/FullSampleList.txt
+Sample_File=/data/SBCS-EizaguirreLab/Turtle_WGBS/00_General/FullSampleList.txt
 SAMPLE=$(sed -n "${SGE_TASK_ID}p" $Sample_File)
 
 ## set directories
