@@ -4,7 +4,6 @@
 #$ -l h_rt=24:00:00
 #$ -cwd
 #$ -j y
-#$ -m bea
 #$ -l highmem
 #$ -t 1-60
 
