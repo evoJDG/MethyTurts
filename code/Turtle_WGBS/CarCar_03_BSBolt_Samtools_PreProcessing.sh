@@ -1,12 +1,11 @@
 #!/bin/bash
-#$ -l h_vmem=13G
+#$ -l h_vmem=2G
 #$ -pe smp 10 
 #$ -l h_rt=240:00:00
 #$ -o /data/SBCS-EizaguirreLab/Turtle_WGBS/04_Samtools_Pre_Processing/log_files/samtools_pre_processing.stdout
 #$ -e /data/SBCS-EizaguirreLab/Turtle_WGBS/04_Samtools_Pre_Processing/log_files/samtools_pre_processing.stderr
 #$ -t 2-59
 #$ -tc 10
-#$ -l highmem
 
 # Created by: Charley
 # Date: 17.06.2022
