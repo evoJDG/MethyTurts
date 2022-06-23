@@ -4,7 +4,7 @@
 #$ -l h_rt=240:00:00
 #$ -o /data/SBCS-EizaguirreLab/Turtle_WGBS/04_Samtools_Pre_Processing/log_files/samtools_adults_pre_processing.stdout
 #$ -e /data/SBCS-EizaguirreLab/Turtle_WGBS/04_Samtools_Pre_Processing/log_files/samtools_adults_pre_processing.stderr
-#$ -t 61-120
+#$ -t 60-119
 #$ -tc 10
 
 # Created by: Charley
