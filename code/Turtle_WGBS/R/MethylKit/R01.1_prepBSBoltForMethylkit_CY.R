@@ -1,14 +1,13 @@
-## Data preparation for methylKit
-## A. Balard
-## 3rd of August 2021
+## Data preparation for methylKit ###
 
-# Adapted James Gilbert 21st July 2022
-# Adapted Charley Yen 25th July 2022
+# From BSBolt CGmap format to methylKit format
 
-# To be run on RStudio on Apocrita OnDemand
-# NB: need enough memory to load all files, otherwise it crashes
-# Go for around 24 Gb
+# Created by: Alice Balard, 3rd August 2021
+# Adapted by: James Gilbert, 21st July 2022
+# Adapted by: Charley Yen, 3rd August 2022
 
+
+########################################################################################################################################
 
 ###### Prep environment ######
 
@@ -18,8 +17,10 @@ DATADIR <- file.path("/data/SBCS-EizaguirreLab/Turtle_WGBS/05_Methylation_Callin
 OUTDIR <- file.path(DIR, "formatCG4methylKit")
 
 # Create OUTDIR if it doesn't exist already
-# if (!dir.exists(OUTDIR)) { dir.create(OUTDIR)}
+if (!dir.exists(OUTDIR)) { dir.create(OUTDIR)}
 
+
+########################################################################################################################################
 
 ###### Import files ######
 
@@ -29,12 +30,16 @@ temp = list.files(path=DATADIR,
                   full.names = T)
 
 # Check correct files are included in list
+print("No. of files in list:")
 length(temp) # check number of files: should be 58 (hatchlings from no repeated nest -> removed 119-5 and 120-3 for now)
+
 head(temp) # check 1st few files on the list
 
 # Import files into a list
 # NB. Takes a while
 myfiles = lapply(temp, read.csv, sep="\t", header=F)
+
+print("Finished importing files into a list")
 
 # Change the name of the files in myfiles -> just include sample ID
 names(myfiles) = lapply(temp, function(x) gsub(pattern = paste0("(", DATADIR, "/)(.*)(.CG.map.*)"), replacement = "\\2", x))
@@ -42,6 +47,8 @@ names(myfiles) = lapply(temp, function(x) gsub(pattern = paste0("(", DATADIR, "/
 # Check
 names(myfiles)
 class(myfiles)
+
+print("Add column names to files")
 
 # Add column names
 new.names=c("chrom", "nucleotide", "position", "context", "sub-context", "methylation_value", "methylated_bases", "all_bases")
@@ -51,9 +58,12 @@ myfiles=lapply(myfiles, setNames, new.names)
 head(myfiles)
 
 
+########################################################################################################################################
+
 ###### Transform BSBolt output format into MethylKit input format ######
 
 # Create function myrenameFUN() that performs formatting changes
+
 myrenameFUN <- function(BSBDF){
   MKDF=data.frame(chrBase=paste(BSBDF$chrom,BSBDF$position, sep = "."),
                   chr=BSBDF$chrom,
@@ -67,8 +77,14 @@ myrenameFUN <- function(BSBDF){
 
 # Apply function to every methylation file in list
 # NB. Takes a while
+
+print("Apply myrenameFUN() to every file in list")
+
 myfilesMK=lapply(myfiles, myrenameFUN)
 
+print("Done")
+
+########################################################################################################################################
 
 ###### Save output files ######
 
@@ -76,6 +92,8 @@ length(myfilesMK)
 
 # Output the transformed files as separate files into OUTDIR
 # NB. Takes a while
+
+print("Saving to OUTDIR")
 
 for(i in 1:length(myfilesMK)){
   write.table(myfilesMK[[i]],
@@ -87,8 +105,11 @@ for(i in 1:length(myfilesMK)){
 # Print minimum all_bases for one file
 # print(min(myfilesMK$all_bases))
 
+print("Minimum all_bases value for each file in list:")
 
 # Minimum all_bases value for each (loop)
 for ( i in names(myfilesMK) ) {
   print(min(myfilesMK[[i]]$all_bases))
 }
+
+
